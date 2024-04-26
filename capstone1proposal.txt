@@ -1,0 +1,28 @@
+Ian Pape
+
+Capstone 1 Proposal
+
+
+Proposal Idea : Food Product Ingredient Checker Website
+
+Goal: The goal of our website is to provide users with a tool to check if certain food products contain ingredients that they may be allergic to or wish to avoid for health or personal reasons. This will help users make informed decisions about the products they consume.
+
+Users: Our site will cater to a wide range of users, including individuals with food allergies, dietary restrictions, health-conscious consumers, parents looking to ensure their children's food safety, and anyone interested in knowing more about the ingredients in their food. The demographic will include people of all ages and backgrounds who are concerned about food ingredients.
+
+Data: We plan to use a food ingredient database API that contains information about various food products and their ingredients. The data should include details like product names, ingredients, nutritional information, allergen warnings, and other relevant information that users can search through.
+
+Approach:
+
+a. Database Schema: The database will have tables for users, food products, ingredients, and user queries. Users can search for food products and save their queries for future reference.
+
+b. API Issues: Potential issues with the API could include incomplete or inaccurate data, limited access to certain data fields, and changes in API endpoints or authentication methods.
+
+c. Security: We will need to secure user authentication details and ensure that sensitive information such as user queries and saved searches are stored securely.
+
+d. Functionality: The app will allow users to search for food products by name or category, enter problem ingredients to check against products, save products that are safe for them to eat.
+
+e. User Flow: Users will land on a homepage where they can log in to access saved searches or register an account and return to login. After entering a product name or problem ingredients, they will receive a result indicating whether the ingredients are present in the product. They can then save the result on their profile in some sort of collection of "safe foods for me to eat".
+
+f. Additional Features: Stretch goals may include personalized user profiles, sharing search results with others, integrating recipe suggestions based on dietary preferences, and providing detailed ingredient information.
+
+Overall, our website aims to empower users with knowledge about the ingredients in their food, promote food safety and awareness, build a vetted listed of foods/snacks that are safe for them, and provide a user-friendly experience for accessing this information.
