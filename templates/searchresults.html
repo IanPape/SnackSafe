@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Safe Snacks!</h1>
+    <div class="row">
+        {% if foods %}
+            {% for food in foods %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Brand: {{ food.brand }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Product Name: {{ food.description }}</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Ingredients: {{ food.ingredients }}</p>
+                            <a href="https://fdc.nal.usda.gov/fdc-app.html#/food-details/{{ food.fdcId }}/nutrients" target="_blank">View USDA Details</a>
+                            <form method="POST" action="{{ url_for('add_to_snack_safe', fdc_id=food.fdcId) }}">
+                                <button type="submit" class="btn btn-primary">Add to my Snack Safe!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col">
+                <p>No safe food items found.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% if pagination %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item{% if not pagination.has_prev %} disabled{% endif %}">
+            <a class="page-link" href="{{ url_for('search', food_name=request.args.get('food_name', ''), custom_allergen=request.args.get('custom_allergen', ''), allergens=request.args.getlist('allergens'), page=pagination.prev_num) }}" {% if not pagination.has_prev %}aria-disabled="true"{% endif %}>Previous</a>
+        </li>
+        {% for page_num in pagination.iter_pages %}
+            <li class="page-item{% if page_num == pagination.page %} active{% endif %}">
+                <a class="page-link" href="{{ url_for('search', food_name=request.args.get('food_name', ''), custom_allergen=request.args.get('custom_allergen', ''), allergens=request.args.getlist('allergens'), page=page_num) }}">{{ page_num }}</a>
+            </li>
+        {% endfor %}
+        <li class="page-item{% if not pagination.has_next %} disabled{% endif %}">
+            <a class="page-link" href="{{ url_for('search', food_name=request.args.get('food_name', ''), custom_allergen=request.args.get('custom_allergen', ''), allergens=request.args.getlist('allergens'), page=pagination.next_num) }}" {% if not pagination.has_next %}aria-disabled="true"{% endif %}>Next</a>
+        </li>
+    </ul>
+</nav>
+{% endif %}
+
+
+
+
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}My Snack Safe{% endblock %}
+
+{% block content %}
+<div class="container-fluid user-snack-safe-bg">
+    <div class="row justify-content-center"> 
+        <div class="col-md-8">
+            <h1 class="text-center mb-4 teal-text display-3">My Snack Safe</h1>
+
+            <div class="row">
+                {% if saved_products %}
+                    {% for product in saved_products %}
+                        <div class="col-md-6 mb-4"> <!-- Reduce column width for better layout -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Product Name: {{ product.name }}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Brand: {{ product.brand }}</p>
+
+                                    <a href="https://fdc.nal.usda.gov/fdc-app.html#/food-details/{{ product.fdc_id }}/nutrients" target="_blank" class="btn btn-info">View USDA Details</a> <!-- Apply Bootstrap btn-info style -->
+
+                                    <form method="POST" action="{{ url_for('remove_product', product_id=product.id) }}" style="display: inline;">
+                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col">
+                        <p class="text-warning fs-4">Your Snack Safe is empty.</p>
+
+
+
+                    </div>
+                {% endif %}
+            </div>
+          
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+/* styles.css */
+
+/* Adjust margin and ensure scrolling */
+.container-custom {
+    margin-top: 0; /* Remove margin */
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 80h; /* Set height to fill entire screen */
+    
+}
+
+.user-snack-safe-bg {
+    background-image: url('/static/images/snacksafebg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; /* Make the image cover the entire background */
+    height: 100vh; /* Adjust the height as needed */
+}
+
+.teal-text {
+    color: #008080; /* Teal color code */
+}
