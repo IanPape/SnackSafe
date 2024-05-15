@@ -9,6 +9,11 @@ from werkzeug.security import generate_password_hash ,check_password_hash
 from sqlalchemy.orm.exc import NoResultFound
 from urllib.parse import quote, quote_plus
 
+def connect_db(app):
+    with app.app_context():
+        db.app = app
+        db.init_app(app)
+        db.create_all()
 
 
 app = Flask(__name__)
@@ -20,7 +25,7 @@ app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = "yobananaboy"
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
-db.init_app(app) 
+connect_db(app)
 migrate = Migrate(app, db)
 
 login_manager = LoginManager()
