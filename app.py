@@ -61,8 +61,8 @@ def login():
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
         if user:
-            # Debug print to output hashed password from the database
-            print(f"Hashed Password from DB: {user.password_hash}")
+            # # Debug print to output hashed password from the database
+            # print(f"Hashed Password from DB: {user.password_hash}")
 
             if user.check_password(password):
                 login_user(user)
@@ -329,7 +329,7 @@ def contains_allergen(ingredients, allergen):
         return False
     
     # Split ingredients into components based on common separators
-    separators = [',', ';', '|']  # Add more separators if needed
+    separators = [',', ';', '|']  
     for sep in separators:
         if sep in ingredients:
             components = ingredients.split(sep)
