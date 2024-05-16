@@ -123,6 +123,7 @@ def register():
             db.session.commit()
 
             flash('User registered successfully!', 'success')
+            print(f"User registered with username: {username} and hashed password: {hashed_password}")
             return redirect(url_for('login'))
         except Exception as e:
             # Rollback changes on error
@@ -132,8 +133,9 @@ def register():
         finally:
             # Close the session to release resources
             db.session.close()
-    print(f"User registered with username: {username} and hashed password: {hashed_password}")
+
     return render_template('register.html')
+
 
 
 
