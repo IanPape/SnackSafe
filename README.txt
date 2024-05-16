@@ -14,3 +14,12 @@ Ian Pape’s Capstone 1 project.
     For instance, say I tend to find all store bought Salsas taste overwhelmingly of Cumin (which I do), just search for "salsa" and put "cumin" in the custom allergen input and voila! A list of Salsas with no cumin!
 
      Snack safe everyone!
+
+The tools I used in building this app:
+
+Python
+SqlAlchemy
+Postgresql
+ElephantSql
+deployed on Render
+Bootstrap
