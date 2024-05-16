@@ -69,22 +69,21 @@ def login():
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
         if user:
-            # # Debug print to output hashed password from the database
-            # print(f"Hashed Password from DB: {user.password_hash}")
-
-            if user.check_password(password):
+            print(f"Hashed Password from DB: {user.password_hash}")
+            print(f"Entered Password: {password}")
+            print(f"Generated Hash for Entered Password: {generate_password_hash(password)}")
+            if check_password_hash(user.password_hash, password):
                 login_user(user)
-                print("User logged in successfully.")  # Debugging output
-                print(f"Current user ID: {current_user.id}")  # Debugging output
+                print("User logged in successfully.")
+                print(f"Current user ID: {current_user.id}")
                 return redirect(url_for('my_snack_safe'))
             else:
-                print("Password incorrect.")  # Debugging output
+                print("Password incorrect.")
                 flash('Invalid username or password', 'error')
         else:
-            print("User not found.")  # Debugging output
+            print("User not found.")
             flash('Invalid username or password', 'error')
     return render_template('login.html')
-
 @app.route('/logout')
 @login_required
 def logout():
@@ -131,12 +130,16 @@ def register():
         finally:
             # Close the session to release resources
             db.session.close()
-
+    print(f"User registered with username: {username} and hashed password: {hashed_password}")
     return render_template('register.html')
 
 
 
-
+@app.route('/check_users')
+def check_users():
+    users = User.query.all()
+    user_data = [{'username': user.username, 'password_hash': user.password_hash} for user in users]
+    return jsonify(user_data)
 
 @app.route('/foodsearch')
 def food_search():
@@ -375,6 +378,6 @@ def get_allergens_for_food(food_id):
         return []  # Return empty list if allergen data is not available or API call fails
 
 
-
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
     app.run(debug=True)
