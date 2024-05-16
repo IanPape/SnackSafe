@@ -8,6 +8,7 @@ import logging
 from werkzeug.security import generate_password_hash ,check_password_hash
 from sqlalchemy.orm.exc import NoResultFound
 from urllib.parse import quote, quote_plus
+import os
 
 def connect_db(app):
     with app.app_context():
@@ -19,7 +20,7 @@ def connect_db(app):
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///snacksafe_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL", "postgresql:///snacksafe_db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = "yobananaboy"
