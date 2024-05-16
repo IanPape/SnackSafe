@@ -9,6 +9,8 @@ from werkzeug.security import generate_password_hash ,check_password_hash
 from sqlalchemy.orm.exc import NoResultFound
 from urllib.parse import quote, quote_plus
 import os
+import logging
+from sqlalchemy.orm.exc import NoResultFound
 
 def connect_db(app):
     with app.app_context():
@@ -25,7 +27,7 @@ print("SECRET_KEY:", os.getenv("SECRET_KEY"))
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL", "postgresql:///snacksafe_db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['SECRET_KEY'] = "yobananaboy"
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "yobananaboy")
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
@@ -380,4 +382,5 @@ def get_allergens_for_food(food_id):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
