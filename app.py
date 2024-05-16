@@ -19,6 +19,8 @@ def connect_db(app):
 
 app = Flask(__name__)
 
+print("DATABASE_URL:", os.getenv("DATABASE_URL"))
+print("SECRET_KEY:", os.getenv("SECRET_KEY"))
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL", "postgresql:///snacksafe_db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
