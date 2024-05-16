@@ -1,6 +1,6 @@
-# SnackSafe
+SnackSafe
 
-Ian Pape's Capstone 1 project.
+Ian Pape’s Capstone 1 project.
 
     In this app the user may create an account, login and be directed to the users "Snack Safe" page.  From here you may see any saved food products or "snacks". If the user hasnt done any saving yet, click on the "Search" link in the navbar.  From there the User may type a food procuct in the search input, check any boxes of the top 8 allergens the user wants to avoid, as well as adding anything else the user may want to avoid in the "custom allergen" input. The search will comb all branded foods in the USDA's Food Central Database, and return a list of cards containing foods the user searched for(if there are any) that do not contain any selected allergens. On the food product cards returned from the result, one may click the link the view the full USDA nutrition info on that product, or click "Add to my Snack Safe!" to build up a list of safe snacks just for you.
 
